@@ -13,6 +13,10 @@ class Tkwindow:
             self.arr = tree_array
         else:
             self.arr = tree_array[1:]
+        self.size = len(self.arr)
+        for i in range(self.size):  # Remove subtrees of an empty nodes
+            if self.arr[i] is None:
+                self.strip_tree(i)
         while self.arr[-1] is None:
             self.arr.pop()
         self.size = len(self.arr)
@@ -21,12 +25,19 @@ class Tkwindow:
         self.radius = 20  # radius of each node
         self.distance = 20  # horizontal distance between bottom leaf nodes
         self.graph_width = self.tree_width * (self.distance * 2 - 1 + self.radius * 2)
-        self.padding = self.radius
-        self.row_distance = 60
+        self.padding = self.radius  # Padding on the margins
+        self.row_distance = 60  # distance between rows
         self.coordinates = list()
         self._setcoord()
         self.master.title("Binary Tree")
         self.draw()
+
+    def strip_tree(self, n):
+        self.arr[n] = None
+        if n * 2 + 1 < self.size:
+            self.strip_tree(n * 2 + 1)
+        if n * 2 + 2 < self.size:
+            self.strip_tree(n * 2 + 2)
 
     def _setcoord(self):
         level_count = 0
@@ -92,5 +103,4 @@ def viewBinaryTree(*tree_array):
 
 # test case
 if __name__ == "__main__":
-    print("viewBinaryTree([2, 3, 4, None, 6, 6, 8, None, None, 0])")
-    viewBinaryTree([2, 3, 4, None, 6, 6, 8, None, None, 0, 27, 198, -10])
+    viewBinaryTree([2, 3, 4, None, 6, 6, 8, 10, 80, 0, 27, 198, -10, None, None, 78, 89, 65, None, 95, 102, 9])
