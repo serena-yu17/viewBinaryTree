@@ -1,3 +1,6 @@
+# Written by Feng Yu for COMP9021
+
+
 from tkinter import *
 from math import log2
 
