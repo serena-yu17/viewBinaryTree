@@ -1,5 +1,5 @@
 # Written by Feng Yu for COMP9021
-# You use or modify it freely for any purposes.
+# You may use or modify it freely for any purposes.
 
 
 from tkinter import *
